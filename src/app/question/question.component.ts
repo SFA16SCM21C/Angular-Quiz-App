@@ -17,6 +17,7 @@ export class QuestionComponent implements OnInit {
   correctAnswer: number = 0;
   inCorrectAnswer: number = 0;
   interval$: any;
+  progress: string = "0";
 
   constructor(private questionService : QuestionService) { }
 
@@ -44,10 +45,12 @@ export class QuestionComponent implements OnInit {
   checkAnswer(currentQno: number, option: any) {
     if (option.correct) {
       this.points += 10;
+      this.getProgressPercentage();
       this.correctAnswer++;
       this.currentQuestion++;
     } else {
       this.points -= 10;
+      this.getProgressPercentage();
       this.inCorrectAnswer++;
       this.currentQuestion++;
     }
@@ -85,5 +88,10 @@ export class QuestionComponent implements OnInit {
     this.points = 0;
     this.counter = 60;
     this.currentQuestion = 0;
+  }
+
+  getProgressPercentage() {
+    this.progress = ((this.currentQuestion / this.questionList.length) * 100).toString();
+    return this.progress;
   }
 }
