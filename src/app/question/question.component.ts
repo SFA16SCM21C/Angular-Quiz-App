@@ -84,5 +84,6 @@ export class QuestionComponent implements OnInit {
     this.getAllQuestions();
     this.points = 0;
     this.counter = 60;
+    this.currentQuestion = 0;
   }
 }
